@@ -20,6 +20,10 @@ google_places = GooglePlaces('AIzaSyAb5-uEqOW_3qqu0XLw8_awSBMj8QdORQA')
 #user input for keyword --> category
 keyw = input("Please enter desired search: ")
 
+#Immediately insert category name (which is the keyword)
+cStatement = category.insert().values(cName=keyw)
+con.execute(cStatement)
+
 # You may prefer to use the text_search API, instead.
 query_result = google_places.nearby_search(
         location='Taipei, Taiwan', keyword=keyw,
@@ -45,17 +49,21 @@ for place in query_result.places:
     pStatement = vendor.insert().values(vID=pvID,vname=pName,address=pAddress,district=pDistrict,latitude=pLat,longitude=pLong,rating=pRating)
     con.execute(pStatement)
 
+    #Insert into Has table
+    hStatement = has.insert().values(cName=keyw,vID=pvID)
+    con.execute(hStatement)
+    
     #Insert reviews for Review table
     #get reviews (dict, but bc translate need to convert to string FOR NOW)
     #print(str(place.details['reviews']).translate(non_bmp_map))
-    for review in place.details['reviews']:
-        rAuthor = str(review['author_name']).translate(non_bmp_map)
-        revID = str(review['author_url']).translate(non_bmp_map)
-        rDescription = str(review['text']).translate(non_bmp_map)
-        rRating = str(review['rating']).translate(non_bmp_map)
+    for rev in place.details['reviews']:
+        rAuthor = str(rev['author_name']).translate(non_bmp_map)
+        revID = str(rev['author_url']).translate(non_bmp_map)
+        rDescription = str(rev['text']).translate(non_bmp_map)
+        rRating = str(rev['rating']).translate(non_bmp_map)
 
         print(pvID)
-        rStatement = review.insert().values(rID=revID,author=rAuthor,rDescription=description,rating=rRating,vID=pvID)
+        rStatement = review.insert().values(rID=revID,author=rAuthor,description=rDescription,rating=rRating,vID=pvID)
         con.execute(rStatement)
         
     

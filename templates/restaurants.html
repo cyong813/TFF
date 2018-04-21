@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <p style = "margin-top:80px;font-size:16px;">
+    Hi {{ session['username'] }}!
+     <a href="/logout" style="font-size:16px;text-decoration:none;">(Logout)</a>
+    </p>
+
+    <h1>Restaurants</h1>
+    <div id ="posts">
+      {% for vendor in vendorData %}
+        <div class = "post">
+          <div class = "main-post-content">
+          <div class = "info">
+            <span class="postID">
+              {{ vendor['vname'] }}
+            </span>
+            
+          <div class = "description">
+            <div class = "post-description">
+              {{ vendor['address'] }}
+            </div>
+            <br>
+          </div>
+        </div>
+        </div>
+
+      {% endfor %}
+    </div>
+{% endblock %}

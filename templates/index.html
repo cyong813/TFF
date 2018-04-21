@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <p style = "margin-top:80px;font-size:16px;">
+  Hi {{ session['username'] }}!
+   <a href="/logout" style="font-size:16px;text-decoration:none;">(Logout)</a>
+  </p>
+  
+  {% if error %}
+    <p class="error"><strong>Error:</strong> {{error}} </p>
+  {% endif %}
+
+
+{% endblock %}

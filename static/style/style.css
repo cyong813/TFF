@@ -1,0 +1,398 @@
+* {
+	font-family: 'Century Gothic';
+	color: #aaaaaa;
+}
+
+.content {
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+div#mainContent {
+    width: 50%;
+    margin: 0 auto;
+    display: table;
+}
+
+a {
+	color: #cccccc;
+}
+
+.navbar-brand {
+	text-decoration:none;
+	color:#ff5c50;
+	text-transform: uppercase;
+	font-size: 30px;
+	margin-left: 2px;
+	margin-top: 6px;
+}
+
+.navbar-message {
+    font-size: 9px;
+    color: #2b2b2b;
+    margin-left: 3px;
+    position: absolute;
+}
+
+a.navbar-brand:hover {
+    border: none;
+}
+
+div#logo {
+    margin-top: 10px;
+    float: left;
+}
+
+div#messaging {
+    float: left;
+    margin-left: 4px;
+}
+
+#navigation-right {
+	float:right;
+}
+
+#navigation-right a {
+		font-size: 18px;
+		text-decoration: none;
+    display: inline-block;
+    height: 52px;
+    line-height: 52px;
+}
+
+#navigation-right a:hover {
+    color: #ff5c50;
+}
+
+.navbar-nav>li>a {
+    padding-top: 18.5px;
+    padding-bottom: 18.5px;
+}
+
+.post {
+	width:610px;
+	margin-bottom: 40px;
+}
+
+.post-content {
+	display: flex;
+}
+
+
+.post-react span {
+    margin-top: -14px;
+    color: #ff5c50;
+    text-transform: uppercase;
+    font-size: 10px;
+    margin-left: 460px;
+
+}
+.main-post-content {
+    display: flex;
+}
+.post-description {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	color: #515151;
+    font-size: 16px;
+}
+
+.links {
+    width: 280px;
+		position: relative;
+}
+
+.info {
+	float: left;
+	width: 160px;
+}
+
+.picture img {
+	float: left;
+    width: 280px;
+    height: auto;
+}
+
+.picture {
+    width: 280px;
+    float: left;
+}
+
+.postEdit, .postComment {
+	float: left;
+}
+
+.postDelete {
+	float: right;
+}
+
+.postTag {
+	margin-left: -19px;
+}
+
+.postEdit, .postDelete, .postComment, .postTag {
+	color: #ff5c50;
+	text-transform: uppercase;
+	font-size: 10px;
+}
+
+a.postEdit:hover, a.postDelete:hover {
+	color: #ff5c50;
+}
+
+h1.name {
+    position: relative;
+    z-index: 23;
+    margin-top: 0px;
+    font-size: 24px;
+    margin-right: 12px;
+    color: #ff5c50;
+}
+
+span.postID {
+    /* margin-left: 69px; */
+    margin-top: -21px;
+    font-size: 60px;
+    /* float: left; */
+    z-index: 1;
+    position: absolute;
+    font-style: italic;
+}
+
+span.username {
+	z-index: 5;
+    color: #ff5c50;
+		margin-left:35px;
+    font-size: 14px;
+    position: absolute;
+}
+
+.description {
+    float: left;
+    margin-left: 20px;
+    margin-top: 20px;
+    color: #515151;
+    font-size: 16px;
+    flex: 1;
+}
+
+.time, .date {
+	margin-top: 42px;
+	color: #ff5c50;
+  font-size: 14px;
+	position:absolute;
+}
+
+
+span.time {
+	position: absolute;
+	margin-top: -3px;
+    margin-top: 0px;
+}
+
+span.likes {
+    margin-top: 37px;
+    position: absolute;
+}
+
+.likes .people {
+    visibility: hidden;
+    width: 120px;
+    background-color: #ff5c50;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    margin-left: -9px;
+    margin-top: 5px;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.likes:hover .people {
+    visibility: visible;
+}
+
+.likes .people::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -48px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #ff5c50 transparent;
+}
+
+span.tags {
+	font-size:14px;
+    margin-top: 61px;
+    position: absolute;
+}
+
+.fa {
+		font-size:12px!important;
+    margin-right: 5px;
+}
+
+.fa-heart:hover {
+
+}
+
+.fa-heart:before {
+	margin-right: 5px;
+}
+
+.comments {
+		padding: 20px;
+		font-size: 8pt;
+		color: #ccc!important;
+    margin-left: 442px;
+    width: 160px;
+    background-color: #ff5c50;
+		height:auto;
+		min-height: 20px;
+}
+
+#comment-name, #comment-time {
+	font-size: 8pt;
+	color: #ccc!important;
+}
+
+div#comment-info:after, #choices:after, #questions:after {
+    clear: both;
+    content: '';
+    display: block;
+}
+
+
+div#comment-content {
+    position: relative;
+		margin-bottom:5px;
+}
+
+.triangle-tip {
+    margin-left: 475px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #ff5c50;
+}
+
+.comment {
+	display: none;
+}
+
+nav#friends{
+	text-align: center;
+}
+
+#friends a {
+		margin-bottom: 25px;
+    font-size: 15px;
+    width: auto;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#friends a:hover {
+    color: #ff5c50;
+    text-decoration: none;
+    border-bottom: 1px solid #ff5c50;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: -7px;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: normal;
+    color: #ff5c50;
+}
+
+table.table.table-striped {
+    width: 100%;
+}
+
+th {
+    font-weight: normal;
+    font-size: 14px;
+		padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #fff!important;
+    color: #ff5c50!important;
+}
+
+.table-striped>tbody>tr:nth-of-type(even) {
+    background-color: #ffdedc!important;
+    color: #767676!important;
+}
+
+td {
+    line-height: 51px!important;
+	font-size: 15px;
+	font-weight: none;
+}
+
+.table>thead:first-child>tr:first-child>th {
+    border-top: 0;
+    font-size: 15px;
+    font-weight:none;
+    text-transform: uppercase;
+    color: #ff5c50;
+}
+
+div#tags {
+    width: 595px;
+		font-size:16px;
+}
+
+div#navigation-left {
+    margin-left: -15px;
+}
+
+.button {
+    border: none;
+    color: white;
+    padding: 8px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background-color: #ff5c50;
+		border-radius: 11px;
+}
+
+#questions {
+	font-size:14px;
+}
+
+#question1 {
+	width: 300px;
+	float:left;
+}
+
+#question2 {
+	width:300px;
+	float: right;
+}
+
+
+input {
+	border: none;
+}
+
+input:focus, input:focus {
+		color: #ff5c50;
+    border-bottom: 2px solid #ff5c50;
+		outline:none;
+		transition: 0.2s;
+}

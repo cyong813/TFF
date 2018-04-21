@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Taipei Food Finder</title>
+  <link rel = "stylesheet" href = "{{ url_for('static', filename='style/style.css') }}"></style>
+  <link rel = "stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/form_script.js') }}"></script>
+  <link rel = "shortcut icon" href = "/static/brand_assets/favicon.ico">
+</head>
+<body>
+
+  {% if not session['logged_in'] %}
+    <div id = "mainContent" style = "width:610px margin-auto;">
+      <div id="homepage">
+
+        <div id="navigation-left" style="margin-bottom:100px;">
+          <div id = "logo">
+                <img src = "/static/brand_assets/logo2.png" style="width:150px; height:auto; margin-top:-5px;">
+              </div>
+              <div id = "messaging">
+                <a class="navbar-brand" href="/" style="font-size:36px;margin-left:2px;margin-top:22px;position:absolute;">Taipei Food Finder</a>
+                <p class ="navbar-message" style="font-size:12px;margin-left:3px;position:absolute;margin-top:62px;">For all the Taipei foodies.</p>
+            </div>
+        </div>
+
+        <a href="/login" class="button" style="margin-top:130px; position: absolute;">Login</a>
+        <a href="/register" class="button" style="margin-left: 100px;margin-top:130px; position: absolute;">Register</a>
+      </div>
+    </div>
+  {% else %}
+  <div class="container" id = "mainContent" style = "width:610px;">
+		<div id = "navigation">
+			<div id="navigation-left">
+				<div id = "logo">
+		        	<a href = "/"><img src = "/static/brand_assets/logo2.png" style="width:62px; height:auto; margin-top:-5px;"> <a/>
+		        </div>
+		        <div id = "messaging">
+			        <a href = "/" class="navbar-brand" href="#">Taipei Food Finder</a>
+			        <p class ="navbar-message">For all the Taipei foodies.</p>
+			    </div>
+			</div>
+			<div id="navigation-right">
+				<a href = "/">home</a>
+				<a href = "/restaurants">restaurants</a>
+				<a href="/likes">likes</a>
+			</div>
+		</div>
+    {% block content %}{% endblock %}
+  </div>
+  {% endif %}
+
+
+</body>
+</html>

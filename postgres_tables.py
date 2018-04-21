@@ -20,7 +20,7 @@ def tables():
     
     #Tables based on schema
     person = Table('person', meta,
-                   Column('uID', Integer, primary_key=True),
+                   Column('username',String,primary_key=True),
                    Column('password',String),
                    Column('name',String),
                    Column('gender',String),
@@ -36,7 +36,7 @@ def tables():
                    Column('rating', Float),
                    )
     review = Table('review', meta,
-                   Column('rID', Integer, primary_key=True),
+                   Column('rID', String, primary_key=True),
                    Column('author',String),
                    Column('description',String),
                    Column('rating',Float),
@@ -46,13 +46,15 @@ def tables():
                    Column('cName', String, primary_key=True)
                    )
     like = Table('likes', meta,
-                   Column('uID',Integer, ForeignKey('person.uID')),
-                   Column('vID',String, ForeignKey('vendor.vID'))
+                   Column('username',String, ForeignKey('person.username'), primary_key=True),
+                   Column('vID',String, ForeignKey('vendor.vID'), primary_key=True)
                    )
     has = Table('has', meta,
-                   Column('cName',String, ForeignKey('category.cName')),
-                   Column('vID',String, ForeignKey('vendor.vID'))
+                   Column('cName',String, ForeignKey('category.cName'), primary_key=True),
+                   Column('vID',String, ForeignKey('vendor.vID'), primary_key=True)
                    )
     #Create above tables in database
     meta.create_all(con)
     return
+
+#tables()

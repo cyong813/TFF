@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Taipei Food Finder</title>
+  <link rel = "stylesheet" href = "{{ url_for('static', filename='style/style.css') }}"></style>
+</head>
+<body>
+
+  <div id = "mainContent" style = "width:610px;">
+    <div id="homepage">
+
+      <div id="navigation-left" style="margin-bottom:100px;">
+        <div id = "logo">
+              <img src = "/static/brand_assets/logo2.png" style="width:150px; height:auto; margin-top:-5px;">
+            </div>
+            <div id = "messaging">
+              <a class="navbar-brand" href="/" style="font-size:36px;margin-left:2px;margin-top:22px;position:absolute;">Taipei Food Finder</a>
+              <p class ="navbar-message" style="font-size:12px;margin-left:3px;position:absolute;margin-top:62px;">For all the Taipei foodies.</p>
+          </div>
+      </div>
+
+      <div id="mainContent" style="position:absolute; width:440px;margin-top:100px;">
+        <form action="/loginAuth" method="POST" style="text-align:center;">
+          <input type="username" name = "username" placeholder="enter your username" required/> </br>
+          <input type="password" name = "password" placeholder="enter your password" required style="margin-left:-6px;margin-bottom:20px;"/></br>
+          <input type="submit" value =Login class="button"/>
+          {% if error %}
+            <p class="error"><strong>Error:</strong> {{error}}</p>
+          {% endif %}
+        </form>
+
+        <a href="/">Go back</a>
+      </div>
+
+    </div>
+  </div>
+
+
+</body>
+</html>

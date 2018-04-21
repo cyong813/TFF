@@ -5,10 +5,9 @@ import sys
 non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
 google_places = GooglePlaces('AIzaSyAb5-uEqOW_3qqu0XLw8_awSBMj8QdORQA')
 
-#user input for keyword --> category
-#keyw = user_input("Please enter desired search: ")
 
-#def gscrape(keyw):
+#user input for keyword --> category
+keyw = user_input("Please enter desired search: ")
 
 # You may prefer to use the text_search API, instead.
 query_result = google_places.nearby_search(
