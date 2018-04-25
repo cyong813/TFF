@@ -7,21 +7,22 @@
     </p>
 
     <h1>Restaurants</h1>
-    <div id ="posts">
+    <div id ="vendors">
       {% for vendor in vendorData %}
-        <div class = "post">
-          <div class = "main-post-content">
+        <div class = "vendor">
+          <div class = "main-vendor-content">
           <div class = "info">
-            <span class="postID">
+            <span class="vendorID">
               {{ vendor['vname'] }}
             </span>
             
           <div class = "description">
-            <div class = "post-description">
+            <div class = "vendor-address">
               {{ vendor['address'] }}
             </div>
             <br>
           </div>
+          
         </div>
         </div>
 

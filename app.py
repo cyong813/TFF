@@ -64,8 +64,11 @@ def restaurants():
         userData = getData(userQuery)
 
         # get all the restaurants
-        vendorQuery = 'SELECT vname, address FROM vendor'
+        vendorQuery = 'SELECT * FROM vendor'
         vendorData = getData(vendorQuery)
+
+        # get reviews from restaurants
+        
 
         return render_template("restaurants.html", userData=userData, vendorData=vendorData)
     return render_template('restaurants.html')

@@ -69,7 +69,7 @@ div#messaging {
     padding-bottom: 18.5px;
 }
 
-.post {
+.vendor {
 	width:610px;
 	margin-bottom: 40px;
 }
@@ -87,10 +87,10 @@ div#messaging {
     margin-left: 460px;
 
 }
-.main-post-content {
+.main-vendor-content {
     display: flex;
 }
-.post-description {
+.vendor-address {
 	margin-top: 20px;
 	margin-bottom: 20px;
 	color: #515151;
@@ -104,7 +104,6 @@ div#messaging {
 
 .info {
 	float: left;
-	width: 160px;
 }
 
 .picture img {
@@ -149,10 +148,14 @@ h1.name {
     color: #ff5c50;
 }
 
-span.postID {
+div#vendors {
+    padding-top: 50px;
+}
+
+span.vendorID {
     /* margin-left: 69px; */
     margin-top: -21px;
-    font-size: 60px;
+    font-size: 30px;
     /* float: left; */
     z-index: 1;
     position: absolute;
@@ -162,7 +165,7 @@ span.postID {
 span.username {
 	z-index: 5;
     color: #ff5c50;
-		margin-left:35px;
+	margin-left:35px;
     font-size: 14px;
     position: absolute;
 }
@@ -179,7 +182,7 @@ span.username {
 .time, .date {
 	margin-top: 42px;
 	color: #ff5c50;
-  font-size: 14px;
+    font-size: 14px;
 	position:absolute;
 }
 
