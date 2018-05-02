@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <p style = "margin-top:80px;font-size:16px;">
+  Hi {{ session['username'] }}!
+   <a href="/logout" style="font-size:16px;text-decoration:none;">(Logout)</a>
+  </p>
+  
+  {% if error %}
+    <p class="error"><strong>Error:</strong> {{error}} </p>
+  {% endif %}
+
+    <h1>Restaurants</h1>
+
+{% if resultData %}
+    <div id ="vendors">
+       {% for result in resultData %}
+        <div class = "vendor">
+          <div class = "main-vendor-content">
+          <div class = "info">
+            <span class="vendorID">
+              {{ result['vname'] }}
+            </span>
+          <div class = "picture">
+               <img src = {{ result['icon'] }} />
+          </div>  
+          <div class = "description">
+            <div class = "vendor-address">
+              {{ result['address'] }}
+            </div>
+            <br>
+            <span class="likes" style="font-size:10px;">
+              <i class="fa fa-heart fa-1" style="color:red;" aria-hidden="true">
+                {% if result['vID'] in userLikesData.keys() and userLikesData[result['vID']]['users']|length > 0 and (session['username'] in userLikesData[result['vID']]['users']) %}
+                    <a href = "/unlike-restaurant/{{ result['vID'] }}" class="unlikelink" style="font-size:14px;color:#ff5c50;"> unlike</a>
+                {% else %}
+                    <a href = "/like-restaurant/{{ result['vID'] }}" class="likelink" style="font-size:14px;color:#ff5c50;"> like</a>
+                {% endif %}
+              </i>
+            </span>
+          </div>
+        </div>
+        </div>
+       {% endfor %}
+    </div>
+{% endif %}
+
+<a href="/">Go back</a>
+
+{% endblock %}

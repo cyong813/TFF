@@ -46,7 +46,13 @@ for place in query_result.places:
     pAddress = place.formatted_address
     pRating = place.rating
     
-    pStatement = vendor.insert().values(vID=pvID,vname=pName,address=pAddress,district=pDistrict,latitude=pLat,longitude=pLong,rating=pRating)
+    # Getting place photos
+    for photo in place.photos:
+        photo.get(maxheight=500, maxwidth=500)
+        pIcon = photo.url #get first photo
+        break
+    
+    pStatement = vendor.insert().values(vID=pvID,vname=pName,address=pAddress,district=pDistrict,latitude=pLat,longitude=pLong,rating=pRating, icon=pIcon)
     con.execute(pStatement)
 
     #Insert into Has table

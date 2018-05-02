@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <p style = "margin-top:80px;font-size:16px;">
-    Hi {{ session['username'] }}!
-     <a href="/logout" style="font-size:16px;text-decoration:none;">(Logout)</a>
-    </p>
+  <p style = "margin-top:80px;font-size:16px;">
+  Hi {{ session['username'] }}!
+   <a href="/logout" style="font-size:16px;text-decoration:none;">(Logout)</a>
+  </p>
+
+  {% if error %}
+    <p class="error"><strong>Error:</strong> {{error}} </p>
+  {% endif %}
 
     <h1>Restaurants</h1>
     <div id ="vendors">
-       {% for vendor in vendorData %}
+       {% for vendor in likeVendorData %}
         <div class = "vendor">
           <div class = "main-vendor-content">
           <div class = "info">
@@ -27,26 +31,15 @@
               <i class="fa fa-heart fa-1" style="color:red;" aria-hidden="true">
                 {% if vendor['vID'] in userLikesData.keys() and userLikesData[vendor['vID']]['users']|length > 0 and (session['username'] in userLikesData[vendor['vID']]['users']) %}
                     <a href = "/unlike-restaurant/{{ vendor['vID'] }}" class="unlikelink" style="font-size:14px;color:#ff5c50;"> unlike</a>
-                {% else %}
-                    <a href = "/like-restaurant/{{ vendor['vID'] }}" class="likelink" style="font-size:14px;color:#ff5c50;"> like</a>
                 {% endif %}
               </i>
             </span>
-            <div class = "vendor-reviews">
-              {% if session['reviews'][vendor['vID']]|length > 0 %}
-                  {% for rev in session['reviews'][vendor['vID']] %}
-                    <p>
-                      {{ rev['author'] }} <b> {{ rev['rating'] }} </b>
-                      <br>
-                      {{ rev['description'] }}
-                    </p>
-                  {% endfor %}
-              {% endif %}
-            </div>
+
           </div>
 
         </div>
         </div>
        {% endfor %}
     </div>
+
 {% endblock %}

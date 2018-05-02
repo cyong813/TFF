@@ -7,7 +7,7 @@ google_places = GooglePlaces('AIzaSyAb5-uEqOW_3qqu0XLw8_awSBMj8QdORQA')
 
 
 #user input for keyword --> category
-keyw = user_input("Please enter desired search: ")
+keyw = input("Please enter desired search: ")
 
 # You may prefer to use the text_search API, instead.
 query_result = google_places.nearby_search(
@@ -26,10 +26,16 @@ for place in query_result.places:
     # Referencing any of the attributes below, prior to making a call to
     # get_details() will raise a googleplaces.GooglePlacesAttributeError.
     #print(place.details) # A dict matching the JSON response from Google.
-    pCity = place.details['address_components'][2]['long_name']
+    pDistrict = place.details['address_components'][2]['long_name']
     pAddress = place.formatted_address
     pRating = place.rating
 
+    # Getting place photos
+    for photo in place.photos:
+        photo.get(maxheight=500, maxwidth=500)
+        pIcon = photo.url #first photo
+        break
+        
     #Insert reviews for Review table
     #get reviews (dict, but bc translate need to convert to string FOR NOW)
     #print(str(place.details['reviews']).translate(non_bmp_map))

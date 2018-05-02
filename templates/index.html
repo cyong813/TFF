@@ -5,10 +5,37 @@
   Hi {{ session['username'] }}!
    <a href="/logout" style="font-size:16px;text-decoration:none;">(Logout)</a>
   </p>
-  
+
   {% if error %}
     <p class="error"><strong>Error:</strong> {{error}} </p>
   {% endif %}
 
+  <form action="/search/processing" method = "POST" enctype = "multipart/form-data">
+        <div id="question1">
+          <p style="font-size:14px;">Enter your desired category: </p>
+          <input type="text" name = "search_item" placeholder="search item" />
+        </div>
+        <div id="question2">
+          <p style="font-size:14px;">Choose your desired district: </p>
+          	<select name = "dist_dropdown">
+          		<option name="sel_dist" value="None">---</option>
+          		<option name="sel_dist" value='Da’an District'>Da'an</option>
+		        <option name="sel_dist" value="Nuannuan District">Nuannuan</option>
+		        <option name="sel_dist" value="New Taipei City">New Taipei City</option>
+		        <option name="sel_dist" value="Sanchong District">Sanchong</option>
+		        <option name="sel_dist" value="Shilin District">Shilin</option>
+		        <option name="sel_dist" value="Songshan District">Songshan</option>
+		        <option name="sel_dist" value="Taiwan">Taiwan</option>
+		        <option name="sel_dist" value="Tamsui District">Tamsui</option>
+		        <option name="sel_dist" value="Xinyi District">Xinyi</option>
+		        <option name="sel_dist" value="Xinzhuang District">Xinzhuang</option> 
+		        <option name="sel_dist" value="Yonghe District">Yonghe</option>       
+		        <option name="sel_dist" value="Zhongshan District">Zhongshan</option>
+		        <option name="sel_dist" value="萬華區">萬華區</option>
+		        <option name="sel_dist" value="中山區">中山區</option>
+	    	</select>
+        </div>
+        <input type="submit" class="button" style="margin-top:20px;margin-left:275px;"value = Submit />
+  </form>
 
 {% endblock %}

@@ -28,6 +28,7 @@ def tables():
                    )
     vendor = Table('vendor', meta,
                    Column('vID', String, primary_key=True),
+                   Column('icon', String),
                    Column('vname',String),
                    Column('address',String),
                    Column('district',String),
@@ -57,4 +58,5 @@ def tables():
     meta.create_all(con)
     return
 
-#tables()
+#Create tables
+tables()

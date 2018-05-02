@@ -31,6 +31,12 @@ for place in query_result.places:
     pAddress = place.formatted_address
     pRating = place.rating
 
+    # Getting place photos
+    for photo in place.photos:
+        photo.get(maxheight=500, maxwidth=500)
+        pIcon = photo.url #get first photo
+        break
+
     #Insert reviews for Review table
     #get reviews (dict, but bc translate need to convert to string FOR NOW)
     #print(str(place.details['reviews']).translate(non_bmp_map))

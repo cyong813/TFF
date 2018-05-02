@@ -26,6 +26,7 @@ class Vendor(db.Model):
     latitude = db.Column(db.Float)
     longitude = db.Column(db.Float)
     rating = db.Column(db.Float)
+    icon = db.Column(db.String)
 
 class Review(db.Model):
     """Model for the Review table"""
