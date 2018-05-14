@@ -67,8 +67,6 @@ for place in query_result.places:
         revID = str(rev['author_url']).translate(non_bmp_map)
         rDescription = str(rev['text']).translate(non_bmp_map)
         rRating = str(rev['rating']).translate(non_bmp_map)
-
-        print(pvID)
         rStatement = review.insert().values(rID=revID,author=rAuthor,description=rDescription,rating=rRating,vID=pvID)
         con.execute(rStatement)
         

@@ -37,11 +37,11 @@ def tables():
                    Column('rating', Float),
                    )
     review = Table('review', meta,
-                   Column('rID', String, primary_key=True),
+                   Column('rID', String),
                    Column('author',String),
                    Column('description',String),
                    Column('rating',Float),
-                   Column('vID',String, ForeignKey('vendor.vID'))
+                   Column('vID', String, ForeignKey('vendor.vID'))
                    )
     category = Table('category', meta,
                    Column('cName', String, primary_key=True)
@@ -59,4 +59,4 @@ def tables():
     return
 
 #Create tables
-tables()
+#tables()

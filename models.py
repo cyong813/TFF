@@ -3,7 +3,6 @@ import datetime
 
 db = SQLAlchemy()
 
-#class Person(BaseModel, db.Model):
 class Person(db.Model):
     """Model for the Person table"""
     __tablename__ = 'person'
@@ -32,11 +31,11 @@ class Review(db.Model):
     """Model for the Review table"""
     __tablename__ = 'review'
 
-    rID = db.Column(db.String, primary_key = True)
+    rID = db.Column(db.String)
     author = db.Column(db.String)
     description = db.Column(db.String)
     rating = db.Column(db.Float)
-    vID = db.Column(db.String, db.ForeignKey('vendor.vID'))
+    vID = db.Column(db.String, db.ForeignKey('vendor.vID'), primary_key = True)
 
 class Category(db.Model):
     """Model for the Category table"""

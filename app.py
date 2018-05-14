@@ -4,6 +4,7 @@ from models import db, Vendor, Person, Review, Category
 import psycopg2
 import psycopg2.extras
 from psycopg2.extensions import AsIs
+from flask_googlemaps import GoogleMaps
 
 app = Flask(__name__)
 
@@ -24,6 +25,8 @@ except:
 app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
 %(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
+app.config['GOOGLEMAPS_KEY'] = ""
+GoogleMaps(app)
 db.init_app(app)
 
 #Secret key for Flask sessions
@@ -61,7 +64,7 @@ def searchProcessed():
     #search by category, district, or both --> return all vendors related
     search_item = False
     if (request.form['search_item']):
-        search_item = request.form['search_item']
+        search_item = (request.form['search_item']).lower()
     selected_dist = request.form.get('dist_dropdown')
 
     # get all the likes
@@ -80,7 +83,7 @@ def searchProcessed():
     if (selected_dist != "None" and search_item):
         present = False
         #check if category exists, else produce error
-        catQuery = """SELECT "cName" FROM category WHERE "cName" LIKE """+"'%"+search_item+"%'"
+        catQuery = """SELECT "cName" FROM category WHERE LOWER("cName") LIKE """+"'%"+search_item+"%'"
         categories = getData(catQuery)
         
         #check if category query is blank, if not then present
@@ -88,10 +91,9 @@ def searchProcessed():
             present = True
 
         if (present): #retrieve restaurants
-            resultQuery = """SELECT * FROM vendor NATURAL JOIN has WHERE "cName" LIKE """+"'%"+search_item+"%' AND district = """+"'"+selected_dist+"'"
+            resultQuery = """SELECT * FROM vendor NATURAL JOIN has WHERE LOWER("cName") LIKE """+"'%"+search_item+"%' AND district = """+"'"+selected_dist+"'"
             resultData = getData(resultQuery)
-            #TODO: Add reviews to each restaurant/vendor
-            return render_template('searchres.html', resultData=resultData, likesData=likesData, userLikesData=allLikes)
+            return render_template('searchres.html', resultData=resultData, likesData=likesData, userLikesData=allLikes, check=catQuery)
             
         if (present == False):
             error = "Category does not exist."
@@ -100,7 +102,7 @@ def searchProcessed():
     elif (search_item and selected_dist == "None"): 
         present = False
         #check if category exists, else produce error
-        catQuery = """SELECT "cName" FROM category WHERE "cName" LIKE """+"'%"+search_item+"%'"
+        catQuery = """SELECT "cName" FROM category WHERE LOWER("cName") LIKE """+"'%"+search_item+"%'"
         categories = getData(catQuery)
         
         #check if category query is blank, if not then present
@@ -108,7 +110,7 @@ def searchProcessed():
             present = True
 
         if (present): #retrieve restaurants
-            searchQuery = """SELECT * FROM vendor NATURAL JOIN has WHERE "cName" LIKE """+"'%"+search_item+"%'"
+            searchQuery = """SELECT * FROM vendor NATURAL JOIN has WHERE LOWER("cName") LIKE """+"'%"+search_item+"%'"
             searchData = getData(searchQuery)
             #TODO: Add reviews to each restaurant/vendor
             return render_template('searchres.html', resultData=searchData, likesData=likesData, userLikesData=allLikes)
@@ -139,7 +141,7 @@ def restaurants():
         userData = getData(userQuery)
 
         # get all the restaurants
-        vendorQuery = 'SELECT * FROM vendor'
+        vendorQuery = 'SELECT * FROM vendor NATURAL JOIN has'
         vendorData = getData(vendorQuery)
 
         # get reviews from restaurants
@@ -254,7 +256,10 @@ def initiate():
 
 def getData(query):
     cursor = conn.cursor(cursor_factory = psycopg2.extras.RealDictCursor) #allows dictionary for user sessions
-    cursor.execute(query)
+    try:
+        cursor.execute(query)
+    except:
+        cursor.execute('rollback;')
     data = cursor.fetchall()
     conn.commit()
     cursor.close()
@@ -299,10 +304,11 @@ def registerProcessing():
         errormsg = "Passwords do not match."
         return render_template('register.html', error = errormsg)
 
-    #TO DO: PERFORM CHECKS
+    #PERFORM CHECKS
     name = request.form['fullname']
     age = request.form['age']
     gender = request.form['gender']
+    
     cursor = conn.cursor()
     query = 'INSERT INTO person (username, password, name, age, gender) VALUES (%s, %s, %s, %s, %s)'
     cursor.execute(query, (username, password, name, age, gender))

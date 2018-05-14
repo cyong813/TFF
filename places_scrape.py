@@ -6,9 +6,7 @@ non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
 google_places = GooglePlaces('AIzaSyAb5-uEqOW_3qqu0XLw8_awSBMj8QdORQA')
 
 #user input for keyword --> category
-#keyw = user_input("Please enter desired search: ")
-
-#def gscrape(keyw):
+keyw = input("Please enter desired search: ")
 
 # You may prefer to use the text_search API, instead.
 query_result = google_places.nearby_search(
@@ -21,6 +19,7 @@ for place in query_result.places:
     pName = place.name
     pLat = place.geo_location['lat']
     pLong = place.geo_location['lng']
+    print(pName, pvID)
 
     # The following method has to make a further API call.
     place.get_details()    
@@ -37,6 +36,8 @@ for place in query_result.places:
         pIcon = photo.url #get first photo
         break
 
+    #print(place.details['reviews'])
+
     #Insert reviews for Review table
     #get reviews (dict, but bc translate need to convert to string FOR NOW)
     #print(str(place.details['reviews']).translate(non_bmp_map))
@@ -45,6 +46,7 @@ for place in query_result.places:
         rID = str(review['author_url']).translate(non_bmp_map)
         rDescription = str(review['text']).translate(non_bmp_map)
         rRating = str(review['rating']).translate(non_bmp_map)
+        
         
 
     

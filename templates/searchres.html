@@ -27,6 +27,8 @@
           <div class = "description">
             <div class = "vendor-address">
               {{ result['address'] }}
+              <p>
+              {{ result['cName'] }}
             </div>
             <br>
             <span class="likes" style="font-size:10px;">
@@ -43,6 +45,8 @@
         </div>
        {% endfor %}
     </div>
+{% else %}
+  <p class="error"><strong><center>No results found.</center></strong>  </p>
 {% endif %}
 
 <a href="/">Go back</a>
