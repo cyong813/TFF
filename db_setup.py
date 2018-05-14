@@ -15,7 +15,7 @@ has = Table('has', meta, autoload_with=con)
 
 #for multilanguage decode
 non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
-google_places = GooglePlaces('AIzaSyAb5-uEqOW_3qqu0XLw8_awSBMj8QdORQA')
+google_places = GooglePlaces('APIKEY')
 
 #user input for keyword --> category
 keyw = input("Please enter desired search: ")
